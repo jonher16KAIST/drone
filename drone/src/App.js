@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login"
+import Register from "./pages/Register"
 import HeaderBar from "./components/HeaderBar"
 
 
@@ -9,8 +10,8 @@ function App() {
     <>
     <HeaderBar />
     <div className="app">
-      
-      <Login />
+
+      <Register />
     </div>
     </>
   );
