@@ -17,11 +17,10 @@ mongoose.connect(`mongodb://${mongo.ip}:${mongo.port}/drone`)
 app.post('/api/register', async (req, res) => {
 	console.log(req.body)
 	try {
-		const newPassword = await bcrypt.hash(req.body.password, 10)
 		await User.create({
-			name: req.body.name,
+			username: req.body.username,
 			email: req.body.email,
-			password: newPassword,
+			password: req.body.pwd,
 		})
 		res.json({ status: 'ok' })
 	} catch (err) {
@@ -30,32 +29,19 @@ app.post('/api/register', async (req, res) => {
 })
 
 app.post('/api/login', async (req, res) => {
+
 	const user = await User.findOne({
 		email: req.body.email,
+		password: req.body.pwd,
 	})
 
-	if (!user) {
-		return { status: 'error', error: 'Invalid login' }
-	}
-
-	const isPasswordValid = await bcrypt.compare(
-		req.body.password,
-		user.password
-	)
-
-	if (isPasswordValid) {
-		const token = jwt.sign(
-			{
-				name: user.name,
-				email: user.email,
-			},
-			'secret123'
-		)
-
-		return res.json({ status: 'ok', user: token })
+	if (user) {
+		return res.json({ status: 'ok', user: true })
 	} else {
-		return res.json({ status: 'error', user: false })
+		return res.json({status:'error', user: false})
 	}
+
+	
 })
 
 app.get('/api/quote', async (req, res) => {
