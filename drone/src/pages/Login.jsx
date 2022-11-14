@@ -4,54 +4,73 @@ import { Form, Button, Card } from "react-bootstrap";
 
 const Login = () => {
 
-    // const userRef = userRef();
-    // const errRef = userRef();
+  const server = {ip: '192.168.0.105', port: "1337"}
 
-    // const [user, setUser] = useState('');
-    // const [pwd, setPwd] = useState('');
-    // const [errMsg, setErrMsg] = useState('');
-    // const [success, setSuccess] = useState('');
+  const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("");
 
-    // useEffect(() => {
-    //   userRef.current.focus()
-
-    // }, [])
-    // useEffect(() => {
-    //     setErrMsg('')
-  
-    //   }, [user,pwd])
+  async function loginUser(event) {
+    event.preventDefault()
+    const response = await fetch(`http://${server.ip}:${server.port}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        pwd,
+      }),
+    })
+    const data = await response.json()
+    console.log(data)
+  }
     
-
   return (
 
     <div className="p-5 d-flex justify-content-center">
-      <Card style={{ width: "50rem" }}>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Please login
-          </Card.Subtitle>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+    <Card style={{ width: "50rem" }}>
+      <Card.Body>
+        <Card.Title>Login</Card.Title> 
+        <Card.Subtitle className="mb-2 text-muted">
+          Please login
+        </Card.Subtitle>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
+        <Form onSubmit={loginUser}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Enter email"
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </div>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Login
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
+  </div>
   );
 };
 
