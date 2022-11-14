@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 app.use(cors())
 app.use(express.json())
 
-const mongo = {ip: '192.168.0.105', port: "1337"}
+const mongo = {ip: '192.168.0.105', port: "27017"}
 
 
 mongoose.connect(`mongodb://${mongo.ip}:${mongo.port}/drone`)
