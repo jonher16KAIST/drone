@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 
 const Login = () => {
 
   const server = {ip: '192.168.0.105', port: "1337"}
+
+  const history = useHistory();
 
   const [pwd, setPwd] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +26,13 @@ const Login = () => {
     })
     const data = await response.json()
     console.log(data)
+    if(data.user === true){
+      history.push('/sdashboard');
+    } else {
+      alert('Error: Your email and password do not match. Please try again.')
+      //setPwd('')
+      //setEmail('')
+    }
   }
     
   return (
