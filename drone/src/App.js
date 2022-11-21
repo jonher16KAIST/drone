@@ -4,6 +4,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from './pages/Dashboard';
 import HeaderBar from "./components/HeaderBar"
+
 import { Route, Routes, Switch, BrowserRouter } from 'react-router-dom';
 
 

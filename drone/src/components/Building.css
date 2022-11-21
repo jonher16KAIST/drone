@@ -1,0 +1,27 @@
+.building{
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 10px 10px;
+    opacity: 0.4;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    transition: width 0.3s, left 0.3s;
+}
+.building:hover{
+    box-shadow: 2px 2px 30px 3px lightblue;
+    color: gray;
+    opacity: 0.6;
+    font-weight:1000;
+    width: 100%;
+    left: 0%;
+}
+.building:active{
+    background-color: darkgray;
+    color:white;
+}
