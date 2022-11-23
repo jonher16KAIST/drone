@@ -16,12 +16,14 @@
 .div1{
   width: 70%;
   float: left;
+  height: 100%;
 }
 .div2{
   width: 30%;
   border-left: 1px solid white;
   align-items: center;
   float: right;
+  height: 100%;
 }
 .div3{
   align-items: center;
@@ -31,4 +33,23 @@
 .tabs ul > li > a {
   background-color: transparent;
   color: red;
+}
+@media only screen and (max-width: 1000px){
+  .dashboard{
+    height: 90%;
+  }
+  .div1{
+    float: none;
+    height: 60%;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .div2{
+    float: none;
+    height: 40%;
+    width: 80%;
+    margin-left: 10%;
+    border-left: none;
+    border-top: 1px solid white;
+  }
 }

@@ -27,7 +27,9 @@ const Login = () => {
     })
     const data = await response.json()
     console.log(data)
-    if(data.user === true){
+    if(data.user){
+      localStorage.setItem('token', data.user)
+      alert("Login successful!")
       navigate("/dashboard")
     } else {
       alert('Error: Your email and password do not match. Please try again.')

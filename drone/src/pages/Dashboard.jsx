@@ -3,15 +3,18 @@ import "./Dashboard.css";
 import Building from "../components/Building";
 import { useEffect, useState } from "react";
 import { socket } from "../services/socket"
+import jwt_decode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
 
   const server = { ip: "192.168.0.105", port: "1337" };
   const ons = { ip: "143.248.55.161", port: "5555"}
 
-
+  let navigate = useNavigate()
 
   const [buildings, setBuildings] = useState([{ name: "Null 1", id_key: null}, { name: "Null 2", id_key:null }]);
+  const [quote, setQuote] = useState('')
 
   async function getBuildings() {
 
@@ -56,26 +59,52 @@ const Dashboard = () => {
 
   }
 
+  async function populateQuote() {
+   const req = await fetch(`http://${server.ip}:${server.port}/api/quote`, {
+    headers: {
+      'x-access-token' : localStorage.getItem('token'),
+    }
+   })
+   const data = await req.json()
+   if(data.status === 'ok'){
+    setQuote(data.quote)
+   }else{
+    alert(data.error)
+   }
+  }
+
   useEffect(() => {
-    getBuildings();
+    const token = localStorage.getItem('token')
+    console.log(' token useffect', token)
+    if(token) {
+      const user = jwt_decode(token)
+      if(!user){
+        localStorage.removeItem('token')
+        navigate('/login')
+      } else {
+        getBuildings();
+      }
+    } else {
+      navigate('/login')
+    }
     
   }, []);
 
   return (
     <div className="dashboard">
-      <div className="div1 d-flex justify-content-center align-items-center h-100">
+      <div className="div1 d-flex justify-content-center align-items-center">
         <iframe
           className="iframe"
           width="90%"
           height="90%"
-          src="https://www.youtube.com/embed/k8CQeybowqw"
+          src="https://www.youtube.com/embed/wxt13IZkiK0"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
       </div>
-      <div className="div2 h-100">
+      <div className="div2">
         <div className="div3">
           <Tabs className="tabs" defaultActiveKey="first">
             <Tab eventKey="first" title="Building list">
