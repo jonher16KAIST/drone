@@ -1,34 +1,21 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import "./HeaderBar.css"
+import { useNavigate } from 'react-router-dom'
 
 const HeaderBar = () => {
+
+  let navigate = useNavigate();
+  let pathDashboard = '/dashboard';
+  let pathLogin = '/login';
+  let pathRegister = '/register';
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#login">Building Detection by Drone Project</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="mainNav">
+      <button className="navTitle" onClick={e=>navigate(pathLogin)}>Building Detection by Drone Project</button>
+      <button className="button" onClick={e=>navigate(pathLogin)}>Login</button>
+      <button className="button" onClick={e=>navigate(pathRegister)}>Register</button>
+      <button className="button" onClick={e=>navigate(pathDashboard)}>Dashboard</button>
+    </div>
   )
 }
 

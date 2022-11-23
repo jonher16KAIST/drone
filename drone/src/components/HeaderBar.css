@@ -1,0 +1,38 @@
+.button{
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5vh;
+    height: 100%;
+    width: 10%;
+    background:none;
+    border: none;
+}
+.button:hover{
+    background-color: white;
+    color: black;
+    opacity: 0.5;
+}
+.button:active{
+    background-color: rgba(112, 203, 245, 0.904);
+    color:white;
+    opacity:0.5;
+}
+.navTitle{
+    color: black;
+    text-decoration: none;
+    height: 100%;
+    width: 30%;
+    margin-left: 10%;
+    background:none;
+    border: none;
+    font-size: 2vh;
+}
+.navTitle:hover{
+    color: black;
+}
+.mainNav{
+    width: 100%;
+    background-image: linear-gradient(to right, white, lightblue,lightcyan);
+    height: 4.5%;
+}

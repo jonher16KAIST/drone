@@ -1,11 +1,10 @@
 .dashboard {
     width: 100%;
-    height: 90vh;
+    height: 95.5%;
     background: url(img/background1.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border: 3px double black;
-    border-radius: 0px 0px 15px 15px;
+    border: 1px solid white;
   }
 .iframe{
     border-style: solid;
@@ -16,13 +15,20 @@
 }
 .div1{
   width: 70%;
+  float: left;
 }
 .div2{
   width: 30%;
-  border-left: 3px double white;
+  border-left: 1px solid white;
   align-items: center;
+  float: right;
 }
 .div3{
   align-items: center;
   padding: 7%;
+}
+
+.tabs ul > li > a {
+  background-color: transparent;
+  color: red;
 }

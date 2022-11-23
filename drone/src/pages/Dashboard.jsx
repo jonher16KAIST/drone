@@ -2,14 +2,19 @@ import { Button, Card, Tab, Tabs } from "react-bootstrap";
 import "./Dashboard.css";
 import Building from "../components/Building";
 import { useEffect, useState } from "react";
+import { socket } from "../services/socket"
 
 const Dashboard = () => {
+
   const server = { ip: "192.168.0.105", port: "1337" };
+  const ons = { ip: "143.248.55.161", port: "5555"}
+
+
 
   const [buildings, setBuildings] = useState([{ name: "Null 1", id_key: null}, { name: "Null 2", id_key:null }]);
 
-  async function getBuildings(id_key) {
-    console.log(id_key, id_key)
+  async function getBuildings() {
+
     const response = await fetch(
       `http://${server.ip}:${server.port}/api/buildings`,
       {
@@ -28,8 +33,9 @@ const Dashboard = () => {
 
   async function queryONS(id_key) {
     console.log("id key from params", id_key)
+    let link = ""
     const response = await fetch(
-      `http://143.248.55.161:5555/ons?AUS=kr|en|sgln|${id_key}`,
+      `http://${ons.ip}:${ons.port}/ons?AUS=kr|en|sgln|${id_key}`,
       {
         method: "GET",
         headers: {
@@ -38,8 +44,7 @@ const Dashboard = () => {
         },
       }
     );
-    const data = await response.json();
-    let link = ""
+    const data = await response.json()
     console.log("Response", data);
     for (let j=0; j<data.length; j++) {
       if(data[j].order === 2){
@@ -53,10 +58,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     getBuildings();
+    
   }, []);
 
   return (
-    <div className="dashboard d-flex flex-row">
+    <div className="dashboard">
       <div className="div1 d-flex justify-content-center align-items-center h-100">
         <iframe
           className="iframe"
@@ -71,7 +77,7 @@ const Dashboard = () => {
       </div>
       <div className="div2 h-100">
         <div className="div3">
-          <Tabs defaultActiveKey="first">
+          <Tabs className="tabs" defaultActiveKey="first">
             <Tab eventKey="first" title="Building list">
               {buildings.map((building) => (
                 <Building onClick={e=>queryONS(building.id_key)} key={building.name} building={building} />

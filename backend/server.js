@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const Building = require('./models/building.model')
+const socket = require("socket.io")
 
 app.use(cors())
 app.use(express.json())
@@ -59,4 +60,25 @@ app.listen(1337, () => {
 	console.log('Server started on 1337')
 })
 
+const httpServer = require("http").createServer();
 
+const io = socket(httpServer, {
+	cors: {
+		origin: "*",
+		methods: ["GET", "POST"],
+	},
+})
+
+
+
+io.on("connection", (socket) => {
+	console.log("connection established for user ", socket.id)
+
+	socket.on("disconnect", ()=> {
+		console.log("A user has been disconnected")
+	})
+})
+
+httpServer.listen(4000, ()=> {
+	console.log("Socket io server started on 4000")
+});
