@@ -4,7 +4,8 @@ import Building from "../components/Building";
 import { useEffect, useState } from "react";
 import { socket } from "../services/socket"
 import jwt_decode from 'jwt-decode'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, redirect } from 'react-router-dom'
+import HeaderBar from "../components/HeaderBar";
 
 const Dashboard = () => {
 
@@ -14,7 +15,6 @@ const Dashboard = () => {
   let navigate = useNavigate()
 
   const [buildings, setBuildings] = useState([{ name: "Null 1", id_key: null}, { name: "Null 2", id_key:null }]);
-  const [quote, setQuote] = useState('')
 
   async function getBuildings() {
 
@@ -59,28 +59,14 @@ const Dashboard = () => {
 
   }
 
-  async function populateQuote() {
-   const req = await fetch(`http://${server.ip}:${server.port}/api/quote`, {
-    headers: {
-      'x-access-token' : localStorage.getItem('token'),
-    }
-   })
-   const data = await req.json()
-   if(data.status === 'ok'){
-    setQuote(data.quote)
-   }else{
-    alert(data.error)
-   }
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('token')
-    console.log(' token useffect', token)
+    console.log('token useffect', token)
     if(token) {
       const user = jwt_decode(token)
       if(!user){
         localStorage.removeItem('token')
-        navigate('/login')
+        redirect('/login')
       } else {
         getBuildings();
       }
@@ -91,6 +77,8 @@ const Dashboard = () => {
   }, []);
 
   return (
+    <>
+    <HeaderBar isLogged={true} />
     <div className="dashboard">
       <div className="div1 d-flex justify-content-center align-items-center">
         <iframe
@@ -120,6 +108,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

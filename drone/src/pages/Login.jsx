@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import HeaderBar from "../components/HeaderBar";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -37,9 +38,11 @@ const Login = () => {
       //setEmail('')
     }
   }
+
     
   return (
-
+    <>
+    <HeaderBar />
     <div className="mainform p-5 d-flex justify-content-center">
     <Card className="card1" style={{ width: "50rem" }}>
       <Card.Body>
@@ -75,10 +78,14 @@ const Login = () => {
           <Button variant="primary" type="submit">
             Login
           </Button>
+          <Card.Subtitle className="mt-2 text-muted">
+          Not registered? <Link to="/register">Go to register page</Link>
+        </Card.Subtitle>
         </Form>
       </Card.Body>
     </Card>
   </div>
+  </>
   );
 };
 

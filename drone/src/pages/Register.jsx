@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import HeaderBar from "../components/HeaderBar";
 import "./LoginRegister.css";
 
 const Login = () => {
@@ -35,6 +36,8 @@ const Login = () => {
   }
 
   return (
+    <>
+    <HeaderBar />
     <div className="mainform p-5 d-flex justify-content-center">
       <Card className="card2" style={{ width: "50rem" }}>
         <Card.Body>
@@ -52,9 +55,7 @@ const Login = () => {
                 type="text"
                 placeholder="Username"
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+             
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -82,10 +83,14 @@ const Login = () => {
             <Button variant="primary" type="submit">
               Register
             </Button>
+            <Card.Subtitle className="mt-2 text-muted">
+          Already registered? <Link to="/login">Go to login page</Link>
+        </Card.Subtitle>
           </Form>
         </Card.Body>
       </Card>
     </div>
+    </>
   );
 };
 
