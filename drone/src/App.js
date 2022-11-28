@@ -10,19 +10,13 @@ import { useState } from 'react';
 
 function App() {
 
-  const [isToken, setisToken] = useState(false)
-
  const checkToken = () => {
   let token = localStorage.getItem('token')
   const user = jwt_decode(token)
   if(user){
-    console.log("trueeee")
-    setisToken(true)
     return true
   }
   else {
-    console.log("falseeee")
-    setisToken(false)
     return false
   }
 }

@@ -6,6 +6,7 @@ import { socket } from "../services/socket"
 import jwt_decode from 'jwt-decode'
 import { useNavigate, redirect } from 'react-router-dom'
 import HeaderBar from "../components/HeaderBar";
+import autoid from "../img/autoid.png"
 
 const Dashboard = () => {
 
@@ -106,6 +107,7 @@ const Dashboard = () => {
             </Tab>
           </Tabs>
         </div>
+        <img  className="autoidLogo" src={autoid} />
       </div>
     </div>
     </>

@@ -1,7 +1,7 @@
 .dashboard {
     width: 100%;
     height: 95.5%;
-    background: url(img/background1.png);
+    background: url(../img/background1.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border: 1px solid white;
@@ -28,6 +28,16 @@
 .div3{
   align-items: center;
   padding: 7%;
+  z-index: 1;
+  position: relative;
+}
+.autoidLogo{
+  z-index: 0;
+  position: absolute;
+  right: 5%;
+  top: 30%;
+  width: 20%;
+  opacity: 0.8;
 }
 
 .tabs ul > li > a {
@@ -51,5 +61,16 @@
     margin-left: 10%;
     border-left: none;
     border-top: 1px solid white;
+  }
+  .div3{
+    z-index: 1;
+    position: relative;
+  }
+  .autoidLogo{
+    z-index: 0;
+    position: absolute;
+    top: 75%;
+    left: 30%;
+    width: 40%;
   }
 }

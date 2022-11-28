@@ -35,7 +35,7 @@ app.post('/api/login', async (req, res) => {
 
 	const user = await User.findOne({
 		email: req.body.email,
-	})
+	}).limit(3)
 
 	if(!user) { return {status: 'error', error: 'Invalid login '}}
 

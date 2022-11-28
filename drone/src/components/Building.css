@@ -7,7 +7,7 @@
     border-color: black;
     border-width: 1px;
     border-radius: 10px 10px;
-    opacity: 0.4;
+    opacity: 0.8;
     width: 90%;
     position: relative;
     left: 5%;
@@ -16,7 +16,7 @@
 .building:hover{
     box-shadow: 2px 2px 30px 3px lightblue;
     color: gray;
-    opacity: 0.6;
+    opacity: 1;
     font-weight:1000;
     width: 100%;
     left: 0%;
