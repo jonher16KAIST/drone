@@ -15,6 +15,27 @@ const mongo = { ip: '192.168.0.105', port: "27017" }
 
 mongoose.connect(`mongodb://${mongo.ip}:${mongo.port}/drone`)
 
+async function epcis_register_user(event) {
+    event.preventDefault()
+    const response = await fetch(`http://143.248.53.26:9111/epcis/Service/EventCapture`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/xml',
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        pwd,
+      }),
+    })
+    const data = await response.json()
+    console.log(data)
+    if(data.status ==='ok'){
+      alert("User registered successfully. Now please login.")
+      navigate("/login")
+    }
+  }
+
 app.post('/api/register', async (req, res) => {
 	console.log(req.body)
 	try {
@@ -25,6 +46,7 @@ app.post('/api/register', async (req, res) => {
 			password: newPassword,
 		})
 		res.json({ status: 'ok' })
+		//epcis_register_user(req.body.username)
 	} catch (err) {
 		console.log(err)
 		res.json({ status: 'error', error: 'Duplicate email' })

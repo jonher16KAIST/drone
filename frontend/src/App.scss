@@ -1,0 +1,22 @@
+.app {
+  margin: 1%;
+  width: 100%;
+  height: 100%;
+}
+
+$link-color:                        black !default;
+$darkgray: #2b2b2b;
+$mediumgray: #3c3f41;
+$lightgray: #afb1b3;
+$primary: $mediumgray;
+$nav-tabs-link-active-bg:             transparent !important;
+$nav-tabs-link-hover-border-color:  white !important;
+$nav-tabs-link-active-color:        white !important;
+$nav-link-color:                    black!default;
+$link-color: white;
+$link-hover-color: white;
+
+$theme-colors: ( "primary": $primary, "mediumgray": $mediumgray, "darkgray": $mediumgray, "lightgray": $lightgray, );
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";

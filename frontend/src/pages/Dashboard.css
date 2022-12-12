@@ -1,0 +1,112 @@
+.dashboard {
+    width: 100%;
+    height: 95.5%;
+    background: url(../img/background1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: 1px solid white;
+  }
+
+  .building_list {
+  
+    max-height:80vh;
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px white;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #e3e3e3;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #afb1b3;
+}
+
+
+.iframe{
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    /* border-radius: 20px 20px; */
+    box-shadow:5px 5px 20px 3px grey;
+    background-color: black;
+}
+.div1{
+  width: 70%;
+  float: left;
+  height: 100%;
+}
+.div2{
+  width: 30%;
+  border-left: 1px solid white;
+  align-items: center;
+  float: right;
+  height: 100%;
+}
+.div3{
+  align-items: center;
+  padding: 7%;
+  z-index: 1;
+  position: relative;
+}
+.autoidLogo{
+  z-index: 0;
+  position: absolute;
+  right: 5%;
+  top: 30%;
+  width: 20%;
+  opacity: 0.8;
+}
+
+.tabs ul > li > a {
+  background-color: transparent !important;
+}
+@media only screen and (max-width: 1000px){
+  .dashboard{
+    height: 90%;
+  }
+  .div1{
+    float: none;
+    height: 60%;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .div2{
+    float: none;
+    height: 40%;
+    width: 80%;
+    margin-left: 10%;
+    border-left: none;
+    border-top: 1px solid white;
+  }
+  .div3{
+    z-index: 1;
+    position: relative;
+  }
+  .autoidLogo{
+    z-index: 0;
+    position: absolute;
+    top: 75%;
+    left: 30%;
+    width: 40%;
+  }
+}
+
+
+

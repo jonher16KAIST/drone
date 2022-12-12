@@ -1,0 +1,38 @@
+.mainform{
+    background: url(../img/background1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 95.5%;
+    border: 1px solid white;
+}
+.card1{
+    height: 360px;
+    position: relative;
+    top: 20%;
+    opacity: 0.8;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px 3px lightgrey;
+}
+.card2{
+    height: 450px;
+    position: relative;
+    top: 20%;
+    opacity: 0.8;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px 3px lightgrey;
+}
+@media only screen and (max-width: 1000px){
+   .mainform{
+        height: 90%;
+   }
+   .card1{
+        height: 70%;
+        top: 10%;
+   }
+   .card2{
+        height: 95%;
+        top: 5%;
+    }
+}
